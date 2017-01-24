@@ -1,0 +1,71 @@
+Customers
+ IsAccountClosed
+ 
+Category
+ CategoryID
+ Name
+
+SubCategory
+ SubCategoryID
+ CategoryID
+ Name
+
+
+ADDetails
+ ADDetailID
+ CustomerID
+ IsApproved
+ CategoryID
+ SubCategoryID
+ Title
+ Price
+ IsNegotiable
+ Description
+  
+
+Photos
+ PhotoID
+ ADDetailID
+ Url
+ Description
+
+OPCategory
+ OPCategoryID
+ CategoryName
+
+FavouriteADs
+ FavouriteADID
+ ADDetailsID
+
+ArchivedADs
+ ArchivedADID
+ ADDetailID
+
+State
+ StateID
+ Name
+
+FAQ
+ FaqID
+ Question
+ Answer
+
+
+Contact Us
+ ContactUsID
+ CustomerID
+ Name
+ Email
+ Subject
+ Message
+
+About Us
+ AboutUSID
+ Content
+ 
+
+
+Views:
+Rendition Object
+
+
