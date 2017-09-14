@@ -1,0 +1,21 @@
+Loan_Application
+	Axe_finance
+	Kassle
+
+Loan_Collateral
+	Axe_finance
+	Kassle
+
+Loan_Party
+	Loan_details
+	Kassle(Guarantors)
+
+Loan_Application_Party:
+	Kassle
+
+Loan_Details
+	Finacle
+
+Loan_Monthly_Summary:
+	Finacle
+
