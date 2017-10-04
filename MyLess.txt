@@ -1,0 +1,132 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+@using Syncfusion.JavaScript.Web
+<button id="myButton"></button>
+<div id="MyGrid">
+</div>
+Hi
+<script id="myTemplate" type="text/x-jsrender">
+    <tr>
+        <td class="photo">
+            <div>
+                {{:Name}}
+            </div>
+        </td>
+    </tr>
+        
+        
+</script>
+
+
+<div class="control">
+    <div id="basicDialog" title="Audi Q3 Drive">
+        <h1>Audi Q3</h1>
+        <div class="audi-q3">
+            <img src="../content/images/dialog/audiq3-1.png" alt="audiq3-1" class="img" />
+            <br />
+            <img src="../content/images/dialog/audiq3-2.png" alt="audiq3-2" />
+        </div>
+        <div class="cnt">
+            It is a concept vehicle with Liquid Silver body colour, 20-inch wheels, fabric folding roof, electrically-controlled hood, 4-cylinder 2.0 TDI engine rated 204 PS (150 kW; 201 hp)
+            and 400 N·m (295.02 lbf·ft), diesel particulate filter and Bluetec emission control system, quattro permanent four-wheel drive system with Haldex clutch,
+            Audi S tronic dual-clutch gearbox, McPherson-strut front axle and a four-link rear axle, Audi drive select system with 3 modes (dynamic, sport, efficiency),
+            MMI control panel with touch pad and dual-view technology, sound system with the prominent extending tweeters.
+        </div>
+    </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(function () {
+
+
+
+            $(function () {
+                // declaration
+                $("#basicDialog").ejDialog({
+                    width: 550,
+                    minWidth: 310,
+                    minHeight: 215,
+          
+                    target: ".control"
+                });
+                $("#btnOpen").ejButton({ size: "medium", click: "onOpen", type: "button", height: 30, width: 172 });
+
+            });
+
+
+            new ej.Button($("#myButton"), {
+                text: "Click me",
+                click: function () {
+
+
+                    //$("#Grid").ejGrid("addRecord", ej.parseJSON(details));
+                    //$("#MyGrid").ejGrid("addRecord", { Name: "Fikoli-roy", Employee: 1, State: "Abia" });
+                    //$("#MyGrid").ejGrid("refreshContent")
+                    //$("#Grid").ejGrid("updateRecord", "OrderID", ej.parseJSON(details));
+
+                    $("#MyGrid").ejGrid("deleteRecord", "Name", "Fikoli");
+                    $("#MyGrid").ejGrid("refreshContent");
+
+
+                    //alert('I am clicked')
+                }
+            })
+
+
+            new ej.Grid($("#MyGrid"), {
+                dataSource: [{ Name: "Fikoli", Employee: 1, State: "Abia" }, { Name: "Ihuoma", Employee: 2, State: "Umaiah" }, { Name: "Ihuoma-2", Employee: 3, State: "Umaiah-2" }],
+                rowTemplate: "#myTemplate",
+                enableAltRow: false,
+                allowSorting: true,
+                allowFiltering: true,
+                allowPaging: true,
+                pageSettings: { pageSize: 1 },
+
+                filterSettings: { showFilterBarStatus: true, statusBarWidth: 500, filterType: ej.Grid.FilterType.Menu },
+                toolbarSettings: { showToolbar: true, toolbarItems: [ej.Grid.ToolBarItems.Add, ej.Grid.ToolBarItems.Edit] },
+                editSettings: { allowAdding: true, allowEditing: true, editMode: ej.Grid.EditMode.Dialog },
+                columns: [{ field: "Name", isPrimaryKey: true },
+                    { field: "Employee", foreignKeyField: "EmployeeId", foreignKeyValue: "EmployeeName", dataSource: [{ EmployeeId: 1, EmployeeName: "Fik-1" }, { EmployeeId: 2, EmployeeName: "Fik-2" }] },
+                    { field: "State", isPrimaryKey: true },
+                    { commands: [{ type: ej.Grid.UnboundType.Edit, buttonOptions: { text: "Edit" } }, { type: ej.Grid.UnboundType.Save, buttonOptions: { text: "Save" } }] }
+                ]
+
+
+            })
+
+        })
+    </script>
+
+
+
+    <div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>
