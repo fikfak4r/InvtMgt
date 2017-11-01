@@ -70,7 +70,7 @@ namespace CustomerSupport.BusinessObjects {
                         {field:"UnitPrice"},
                         {field:"Discount"},
                         {field:"Amount"},
-                        {field:"Total", title:"Total", template:"#:(Quantity * UnitPrice)#", }
+                        {field:"Total", title:"Total", template:"#:(Quantity * UnitPrice)#", },
                         {command:["destroy"]},
 
                     ],
@@ -80,6 +80,7 @@ namespace CustomerSupport.BusinessObjects {
                
                     cellClose:function(e)
                     {
+                        
                         $("#transaction-dtl-grid").data("kendoGrid").refresh()
                         
                        

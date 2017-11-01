@@ -1,4 +1,5 @@
-/// <reference path="../../../Scripts/Kendo/typescript/kendo.all.d.ts" />
+﻿/// <reference path="../../Scripts/Kendo/typescript/kendo.all.d.ts" />
+
 namespace CustomerSupport.BusinessObjects {
     
     
@@ -7,7 +8,7 @@ namespace CustomerSupport.BusinessObjects {
             protected dtSrc =  kendo.data.DataSource;
     
         constructor(){
-          dtSrc =  new kendo.data.DataSource( {
+          this.dtSrc =  new kendo.data.DataSource( {
                 
                                         schema: {
                                             //data: function (response) { alert(JSON.stringify(response)); return response.Entities; },
@@ -29,7 +30,7 @@ namespace CustomerSupport.BusinessObjects {
                                         transport: {
                                             read: function (options) {
                                                 TicketService.List({}, 
-                                                res => {
+                                                    res => {
                                                     options.success(res);
                                                 })
                                             },
@@ -83,43 +84,22 @@ namespace CustomerSupport.BusinessObjects {
     
     
     
-            public Load(): void {
-    
-    
-    
-                TicketService.List({}, response => {
-    
-                    $("#Grid").kendoGrid({
-                        dataSource: dtSrc,
-                        columns: [
-                            { command: ["edit", "destroy"], title: "&nbsp;", width: "250px" },
-                            {field: "TicketIdString"},
-                            {field: "Date", format:"{0:MM/dd/yyyy}"}
-                            
-                            { field: "CustomerId", values: JSON.parse(Q.replaceAll(Q.replaceAll(JSON.stringify(Q.getLookup("Administration.CustomerLocationLookup").items), "CustomerId", "value"), "FullName", "text")) },
-                            { field: "Subject" },
-                            {field:"Type"},
-                            {field:"Priority"},
-                            {field:"Status"},
-                            {field:"GroupRoleName"},
-                            {field:"UserUserName"},
-                            {field:"ProductName"},
-                            {field:"PhoneNumber"},
-                            {field:"NextFollowUpDate"},
-                            {field:"FollowUpAction"},  
-                            {field:"LocationId"}],
-                            
-                        pageable: true,
-                        toolbar: ["create"],
-                        editable: "popup",
-                        
-    
-    
-                    })
-    
-    
-    
-                })
+        public Load(): void {
+
+            $("#groups").kendoDropDownList({
+                text:"Select Group"
+            })
+            $("#agents").kendoDropDownList({
+                
+            })
+              
+    TicketService.List({}, res => 
+        {
+        $("#ticket-list").kendoListView({
+            dataSource: res.Entities,
+            template:kendo.template($("#ticket-preview").html())
+})
+        })
             }
     
     
