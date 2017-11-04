@@ -1,0 +1,121 @@
+{
+	/*
+	 // Place your snippets for TypeScript here. Each snippet is defined under a snippet name and has a prefix, body and 
+	 // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	 // $1, $2 for tab stops, ${id} and ${id:label} and ${1:label} for variables. Variables with the same id are connected.
+	 // Example:
+	 "Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+	"For Loop": {
+		"prefix": "forr",
+		"body": [
+			"for (var ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
+			"\tvar ${3:element} = ${2:array}[${1:index}];",
+			"\tvar x = ${TM_FILENAME}",
+			"\tvar y = ${4|one,two,three|}",
+			"\t${dtrs}",
+			"\t${5:another ${6:placeholder}}",
+			"\t$0",
+			"}"
+		],
+		"description": "For Loop"
+	},
+
+
+	"Ticket Form Properties":{
+		"prefix": "ticketForm",
+		"body": "${1|Defalut,Date,TicketIdString,TransactionId,CustomerId,PhoneNumber,ProductId,Subject,Type,Priority,Status,LocationId,GroupId,UserId,CreatorId,Me,NextFollowUpDate,FollowUpAction,NoteList|}"
+	},
+
+	"Ticket Grid Properties":{
+		"prefix": "ticketGrid",
+		"body": "${1|Defalut,TicketId,TicketIdString,TransactionId,Date,CustomerName,CustomerId,Subject,Type,Priority,Status,GroupRoleName,UserUsername,ProductName,PhoneNumber,NextFollowUpDate,FollowUpAction,LocationId,CreatorId,Me|}"
+	},
+
+	"Ticket Row Properties":{
+		"prefix": "ticketRow",
+		"body": "${1|Defalut,TicketId,TicketIdString,LocationId,ProductId,TransactionId,Date,PhoneNumber,CustomerId,Type,Priority,Status,GroupId,UserId,Subject,CreatorId,Me,NoteList,NextFollowUpDate,FollowUpAction,CallDirection,ProductName,LocationAccountId,LocationDate,LocationPhoneNumber,LocationEmail,LocationWebsite,LocationLocationName,LocationAddress,LocationUserId,CustomerLocationId,CustomerDate,CustomerName,CustomerSex,CustomerDateOfBirth,CustomerPhoneNumber,CustomerEmail,CustomerAddress,GroupRoleName,GroupAccountId,UserUsername,UserDisplayName,UserEmail,UserSource,UserPasswordHash,UserPasswordSalt,UserInsertDate,UserInsertUserId,UserUpdateDate,UserUpdateUserId,UserIsActive,UserLastDirectoryUpdate,UserUserImage,UserAccountId,TicketProcess|}"
+	},
+
+
+	"Delcare Datasource":{
+		"prefix": "dclr_dtSrc",
+		"body": "protected ${1:dtSrc}:  kendo.data.DataSource;"
+	},
+
+	"Field Datasouce":{
+		"prefix": "fld",
+		"body": "${1:fieldName} : {type:\"${2|string,number,date|}\",},"
+	},
+
+	"Field Grid":{
+
+		"prefix": "fld_grd",
+		"body": "{field: \"${1:fieldName}\",  ${2:title :\"${3:Ticket ID}\"}  ${4:format:'${5|{0:MM/dd/yyyy},{0:c}|}',} }"
+	},
+
+	"Kendo datasource": {
+		"prefix": "dtrs",
+		"body": "kendo.data.Datasource({${1|one,two,three|}})"
+	},
+	"Kendo Grid": {
+		"prefix": "kndGrid",
+		"body": [
+			"$(\"#${1:gridId}\").kendoGrid({",
+			"\tdataSource:${2:this.dtSrc},",
+			"\tcolumns:[${TM_FILENAME}],",
+			"\ttoolbar:[\"create\", \"save\", \"cancel\"],",
+			"\teditable:\"popup\",",
+			"\tnavigatable:true",
+			"\t})"
+		]
+	},
+	"Kendo Datasource": {
+		"prefix": "kndDataSource",
+		"body": [
+			"\t${1:this.dtSrc} = new kendo.data.DataSource({",
+			"\tschema: {",
+			"\t//data: function (response) { alert(JSON.stringify(response)); return response.Entities; },",
+			"\t data:\"Entities\",",
+			"\t total: \"TotalCount\",",
+			"\t model: {",
+			"\t  id: \"${2:ColumnId}\",",
+			"\t  fields: {",
+			"\t  },",
+			"\t }",
+			"\t},",
+			"\tbatch: false,",
+			"\tpageSize: 12,",
+			"\ttransport: {",
+			"\t read: function (options) {",
+			"\t       ${3:ClassName}Service.List({},",
+			"\t          res => {",
+			"\t                  options.success(res);",
+			"\t          })",
+			"\t        },",
+			"\t create: function (options) {",
+			"\t        ${3:ClassName}Service.Create({ Entity: JSON.parse( Q.replaceAll(JSON.stringify(options.data), '\"${2:ColumnId}\":0,', '')) },",
+			"\t             res => {",
+			"\t                  options.success(res);",
+			"\t          })",
+			"\t        }",
+			"\t},",
+			"\t})//Ends"
+		]
+	},
+	"Load function":{
+	"prefix":"load",
+	"body": [
+		"\tpublic Load(): void {",
+		"\t    $0",
+		"\t}"
+	]
+	}
+}

@@ -1,0 +1,62 @@
+{
+/*
+	 // Place your snippets for HTML here. Each snippet is defined under a snippet name and has a prefix, body and 
+	 // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	 // $1, $2 for tab stops, ${id} and ${id:label} and ${1:label} for variables. Variables with the same id are connected.
+	 // Example:
+	 "Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+
+	 "Print to console": {
+		"prefix": "log",
+		"body": [
+			"<div${1: id='${2:some_id}'}>$0</div>",
+			"$2"
+		],
+		"description": "Log output to console"
+	},
+
+	"Ticket Form Properties":{
+		"prefix": "ticketForm",
+		"body": "${1|Defalut,Date,TicketIdString,TransactionId,CustomerId,PhoneNumber,ProductId,Subject,Type,Priority,Status,LocationId,GroupId,UserId,CreatorId,Me,NextFollowUpDate,FollowUpAction,NoteList|}"
+	},
+
+	"Ticket Grid Properties":{
+		"prefix": "ticketGrid",
+		"body": "${1|Defalut,TicketId,TicketIdString,TransactionId,Date,CustomerName,CustomerId,Subject,Type,Priority,Status,GroupRoleName,UserUsername,ProductName,PhoneNumber,NextFollowUpDate,FollowUpAction,LocationId,CreatorId,Me|}"
+	},
+
+	"Ticket Row Properties":{
+		"prefix": "ticketRow",
+		"body": "${1|Defalut,TicketId,TicketIdString,LocationId,ProductId,TransactionId,Date,PhoneNumber,CustomerId,Type,Priority,Status,GroupId,UserId,Subject,CreatorId,Me,NoteList,NextFollowUpDate,FollowUpAction,CallDirection,ProductName,LocationAccountId,LocationDate,LocationPhoneNumber,LocationEmail,LocationWebsite,LocationLocationName,LocationAddress,LocationUserId,CustomerLocationId,CustomerDate,CustomerName,CustomerSex,CustomerDateOfBirth,CustomerPhoneNumber,CustomerEmail,CustomerAddress,GroupRoleName,GroupAccountId,UserUsername,UserDisplayName,UserEmail,UserSource,UserPasswordHash,UserPasswordSalt,UserInsertDate,UserInsertUserId,UserUpdateDate,UserUpdateUserId,UserIsActive,UserLastDirectoryUpdate,UserUserImage,UserAccountId,TicketProcess|}"
+	},
+
+	"Row":{
+		"prefix": "row",
+		"body": [
+			"\t<div class=\"row\">",
+			"\t      $0",
+			"\t</div>"
+		]
+	},
+
+    "Ticket Input":{
+		"prefix": "frm_grp",
+		 "body": [
+			"\t<div class=\"form-group\" >",
+			"\t<label for=\"${1:columnName}\">${2:Label}</label>",
+			"\t<input type=\"${3|email,number,password|}\" class=\"form-control\" id=\"${1:columnName}\" ${4:data-role=\"${5|datepicker,datetimepicker,grid,autocomplete|}\"} ${6:data-bind=\"${7:name-value}\"} ${8:placeholder=\"${9:placeHolder}\"}>",
+		"\t</div>"
+		 ]
+	}
+
+
+
+}
