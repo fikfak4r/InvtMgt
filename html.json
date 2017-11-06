@@ -1,62 +1,98 @@
 {
-/*
-	 // Place your snippets for HTML here. Each snippet is defined under a snippet name and has a prefix, body and 
-	 // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	 // $1, $2 for tab stops, ${id} and ${id:label} and ${1:label} for variables. Variables with the same id are connected.
-	 // Example:
-	 "Print to console": {
-		"prefix": "log",
-		"body": [
-			"console.log('$1');",
-			"$2"
-		],
-		"description": "Log output to console"
-	}
-*/
-
-	 "Print to console": {
-		"prefix": "log",
-		"body": [
-			"<div${1: id='${2:some_id}'}>$0</div>",
-			"$2"
-		],
-		"description": "Log output to console"
-	},
-
-	"Ticket Form Properties":{
-		"prefix": "ticketForm",
-		"body": "${1|Defalut,Date,TicketIdString,TransactionId,CustomerId,PhoneNumber,ProductId,Subject,Type,Priority,Status,LocationId,GroupId,UserId,CreatorId,Me,NextFollowUpDate,FollowUpAction,NoteList|}"
-	},
-
-	"Ticket Grid Properties":{
-		"prefix": "ticketGrid",
-		"body": "${1|Defalut,TicketId,TicketIdString,TransactionId,Date,CustomerName,CustomerId,Subject,Type,Priority,Status,GroupRoleName,UserUsername,ProductName,PhoneNumber,NextFollowUpDate,FollowUpAction,LocationId,CreatorId,Me|}"
-	},
-
-	"Ticket Row Properties":{
-		"prefix": "ticketRow",
-		"body": "${1|Defalut,TicketId,TicketIdString,LocationId,ProductId,TransactionId,Date,PhoneNumber,CustomerId,Type,Priority,Status,GroupId,UserId,Subject,CreatorId,Me,NoteList,NextFollowUpDate,FollowUpAction,CallDirection,ProductName,LocationAccountId,LocationDate,LocationPhoneNumber,LocationEmail,LocationWebsite,LocationLocationName,LocationAddress,LocationUserId,CustomerLocationId,CustomerDate,CustomerName,CustomerSex,CustomerDateOfBirth,CustomerPhoneNumber,CustomerEmail,CustomerAddress,GroupRoleName,GroupAccountId,UserUsername,UserDisplayName,UserEmail,UserSource,UserPasswordHash,UserPasswordSalt,UserInsertDate,UserInsertUserId,UserUpdateDate,UserUpdateUserId,UserIsActive,UserLastDirectoryUpdate,UserUserImage,UserAccountId,TicketProcess|}"
-	},
-
-	"Row":{
-		"prefix": "row",
-		"body": [
-			"\t<div class=\"row\">",
-			"\t      $0",
+	/*
+		 // Place your snippets for HTML here. Each snippet is defined under a snippet name and has a prefix, body and 
+		 // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+		 // $1, $2 for tab stops, ${id} and ${id:label} and ${1:label} for variables. Variables with the same id are connected.
+		 // Example:
+		 "Print to console": {
+			"prefix": "log",
+			"body": [
+				"console.log('$1');",
+				"$2"
+			],
+			"description": "Log output to console"
+		}
+	*/
+	
+		 "Print to console": {
+			"prefix": "log",
+			"body": [
+				"<div${1: id='${2:some_id}'}>$0</div>",
+				"$2"
+			],
+			"description": "Log output to console"
+		},
+	
+		"Ticket Form Properties":{
+			"prefix": "ticketForm",
+			"body": "${1|Defalut,Date,TicketIdString,TransactionId,CustomerId,PhoneNumber,ProductId,Subject,Type,Priority,Status,LocationId,GroupId,UserId,CreatorId,Me,NextFollowUpDate,FollowUpAction,NoteList|}"
+		},
+	
+		"Ticket Grid Properties":{
+			"prefix": "ticketGrid",
+			"body": "${1|Defalut,TicketId,TicketIdString,TransactionId,Date,CustomerName,CustomerId,Subject,Type,Priority,Status,GroupRoleName,UserUsername,ProductName,PhoneNumber,NextFollowUpDate,FollowUpAction,LocationId,CreatorId,Me|}"
+		},
+	
+		"Ticket Row Properties":{
+			"prefix": "ticketRow",
+			"body": "${1|Defalut,TicketId,TicketIdString,LocationId,ProductId,TransactionId,Date,PhoneNumber,CustomerId,Type,Priority,Status,GroupId,UserId,Subject,CreatorId,Me,NoteList,NextFollowUpDate,FollowUpAction,CallDirection,ProductName,LocationAccountId,LocationDate,LocationPhoneNumber,LocationEmail,LocationWebsite,LocationLocationName,LocationAddress,LocationUserId,CustomerLocationId,CustomerDate,CustomerName,CustomerSex,CustomerDateOfBirth,CustomerPhoneNumber,CustomerEmail,CustomerAddress,GroupRoleName,GroupAccountId,UserUsername,UserDisplayName,UserEmail,UserSource,UserPasswordHash,UserPasswordSalt,UserInsertDate,UserInsertUserId,UserUpdateDate,UserUpdateUserId,UserIsActive,UserLastDirectoryUpdate,UserUserImage,UserAccountId,TicketProcess|}"
+		},
+	
+		"Row":{
+			"prefix": "row",
+			"body": [
+				"\t<div class=\"${1|row,col-md-12,col-md-6,col-md-9,col-md-3|}\">",
+				"\t      $0",
+				"\t</div>"
+			]
+		},
+	
+		"Ticket Input":{
+			"prefix": "frm_grp",
+			 "body": [
+				"\t<div class=\"form-group\" >",
+				"\t<label for=\"${1:columnName}\">${2:Label}</label>",
+				"\t${3:<input ${4:type=\"${5|email,number,password|}\"} class=\"form-control\" id=\"${1:columnName}\" ${6:data-role=\"${7|datepicker,datetimepicker,grid,autocomplete|}\"} ${8:data-bind=\"${9:name-value}\"} ${10:placeholder=\"${11:placeHolder}\"}/>}",
 			"\t</div>"
-		]
-	},
+			 ]
+		},
 
-    "Ticket Input":{
-		"prefix": "frm_grp",
-		 "body": [
-			"\t<div class=\"form-group\" >",
-			"\t<label for=\"${1:columnName}\">${2:Label}</label>",
-			"\t<input type=\"${3|email,number,password|}\" class=\"form-control\" id=\"${1:columnName}\" ${4:data-role=\"${5|datepicker,datetimepicker,grid,autocomplete|}\"} ${6:data-bind=\"${7:name-value}\"} ${8:placeholder=\"${9:placeHolder}\"}>",
-		"\t</div>"
-		 ]
+		"Select":{
+			"prefix": "sel",
+			"body": "<select style=\"width:100%\" id=\"${1:id}\" class=\"form-control select2\" data-bind=\"source:${2:sourceName}\" data-role=\"dropdownlist\" data-value-field=\"${3:valueFieldName}\" data-text-field=\"${4:texFieldName}\"></select>"
+		},
+
+		"Form container":{
+			"prefix": "frm_box",
+			"body": [
+				"\t<div class=\"col-xs-12 col-md-12\" id=\"${1:id}\">",
+				"\t<div class=\"box box-danger\">",
+				"\t<div class=\"box-header with-border\">",
+				"\t<h3 class=\"box-title\">${2:title}</h3>",
+		
+				"\t<div class=\"box-tools pull-right\">",
+				"\t<button type=\"button\" class=\"btn btn-box-tool\" data-widget=\"collapse\">",
+				"\t<i class=\"fa fa-minus\"></i>",
+				"\t</button>",
+				"\t<button type=\"button\" class=\"btn btn-box-tool\" data-widget=\"remove\">",
+				"\t<i class=\"fa fa-remove\"></i>",
+				"\t</button>",
+				"\t</div>",
+				"\t</div>",
+				"\t<div class=\"box-body\">",
+				"\t     $0",
+				"\t</div>",
+				"\t<div class=\"box-footer\">",
+                "\t<button type=\"submit\" class=\"btn btn-default\">Cancel</button>",
+                "\t<button data-bind=\"click:getObject\" type=\"submit\" class=\"btn btn-info pull-right\">Submit</button>",
+				"\t</div>",
+				"\t</div>",
+				"\t</div>"
+			]
+
+		}
+
+	
+	
+	
 	}
-
-
-
-}

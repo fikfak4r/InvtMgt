@@ -117,5 +117,26 @@
 		"\t    $0",
 		"\t}"
 	]
+	},
+
+	"Declare Observable":{
+		"prefix": "dclr_observ",
+		"body": "protected ${1:observVarName}: kendo.data.ObservableObject;"
+	},
+
+	"Observable":{
+		"prefix": "observ",
+		"body": [
+			"\t${1:varName} = kendo.observable({",
+			"\t$0",
+			"\tgetObject: function () {",
+			"\t}",
+			"\t})//Ends ${1:varName}",
+			"\tkendo.bind($(\"#${2:htmlElementId}\"), ${1:varName})"
+		]
+	},
+	"Look up":{
+		"prefix": "lkup",
+		"body": "Q.getLookup(\"${1:LookUpId}\").items"
 	}
 }
