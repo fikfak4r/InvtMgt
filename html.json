@@ -13,6 +13,8 @@
 			"description": "Log output to console"
 		}
 	*/
+
+
 	
 		 "Print to console": {
 			"prefix": "log",
@@ -22,6 +24,17 @@
 			],
 			"description": "Log output to console"
 		},
+
+		"New Button":{
+			"prefix": "new",
+			"body": ["\t<div class=\"row\" style=\"padding:0\">",
+				"\t<div class=\"col-md-9\" style=\"padding:0\" >",
+				"\t<a class=\"btn bg-maroon btn-flat margin\" href=\"${1:controller}\">",
+				"\t<span class=\"fa fa-plus\"></span> &nbsp; ${2:Title}</a>",
+				"\t</div>",
+				"\t</div>"]
+		},
+
 	
 		"Ticket Form Properties":{
 			"prefix": "ticketForm",
@@ -90,6 +103,15 @@
 				"\t</div>"
 			]
 
+		},
+
+		"Kendo Template":{
+			"prefix": "tmp",
+			"body": [
+				"\t<script type=\"text/x-kendo-template\" id=\"${1:template-id}\">",
+				"\t$0",
+				"\t</script>"
+			]
 		}
 
 	

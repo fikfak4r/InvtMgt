@@ -138,5 +138,18 @@
 	"Look up":{
 		"prefix": "lkup",
 		"body": "Q.getLookup(\"${1:LookUpId}\").items"
+	},
+	"Kendo list-view":{
+		"prefix": "kndLstVw",
+		"body": [
+			"\t$(\"#${1:id}\").kendoListView({",
+				"\t  dataSource: ${2:data-source-ref},",
+				"\t   template:kendo.template($(\"#${3:template-id}\").html())",
+				"\t })",
+
+				"\t $(\"#${4:pager}\").kendoPager({",
+					"\tdataSource: ${2:data-source-ref},",
+					"\t});"
+		]
 	}
 }
