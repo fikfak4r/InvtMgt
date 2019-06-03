@@ -1,0 +1,9 @@
+Total number of retail customers month on month from Dec 2018 to May 2019 by region
+Total number of active retail customers month on month from Dec 2018 to May 2019 by region
+Total number of customers on PND month on month from Dec 2018 to May 2019 by region
+Total number of retail customers enrolled on USSD month on month from Dec 2018 to May 2019 by region
+Total number of retail customers enrolled on FCMB mobile plus month on month from Dec 2018 to May 2019 by region
+Total number of retail customers enrolled carded month on month from Dec 2018 to May 2019 by region
+Total number of  transacting customers  month on month from Dec 2018 to May 2019  by region
+Total number of  transacting customers  on USSD month on month from Dec 2018 to May 2019  by region
+Total number of  transacting customers  on FCMB Mobile Plus month on month from Dec 2018 to May 2019  by region
