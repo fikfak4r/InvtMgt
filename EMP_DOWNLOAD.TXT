@@ -1,0 +1,227 @@
+#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+using System.IO;
+using Chilkat;
+
+#endregion
+
+namespace ST_c93d563589ed44d190baa288312e25b3
+{
+    /// <summary>
+    /// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+    /// or parent of this class.
+    /// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+        #region Help:  Using Integration Services variables and parameters in a script
+        /* To use a variable in this script, first ensure that the variable has been added to 
+         * either the list contained in the ReadOnlyVariables property or the list contained in 
+         * the ReadWriteVariables property of this script task, according to whether or not your
+         * code needs to write to the variable.  To add the variable, save this script, close this instance of
+         * Visual Studio, and update the ReadOnlyVariables and 
+         * ReadWriteVariables properties in the Script Transformation Editor window.
+         * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+         * 
+         * Example of reading from a variable:
+         *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+         * 
+         * Example of writing to a variable:
+         *  Dts.Variables["User::myStringVariable"].Value = "new value";
+         * 
+         * Example of reading from a package parameter:
+         *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+         *  
+         * Example of reading from a project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+         * 
+         * Example of reading from a sensitive project parameter:
+         *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+         * */
+
+        #endregion
+
+        #region Help:  Firing Integration Services events from a script
+        /* This script task can fire events for logging purposes.
+         * 
+         * Example of firing an error event:
+         *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+         * 
+         * Example of firing an information event:
+         *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+         * 
+         * Example of firing a warning event:
+         *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+         * */
+        #endregion
+
+        #region Help:  Using Integration Services connection managers in a script
+        /* Some types of connection managers can be used in this script task.  See the topic 
+         * "Working with Connection Managers Programatically" for details.
+         * 
+         * Example of using an ADO.Net connection manager:
+         *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+         *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+         *
+         * Example of using a File connection manager
+         *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+         *  string filePath = (string)rawConnection;
+         *  //Use the connection in some code here, then release the connection
+         *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+         * */
+        #endregion
+
+        static string chilkatDir;
+        string baseDir;
+
+		/// <summary>
+        /// This method is called when this script task executes in the control flow.
+        /// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+        /// To open Help, press F1.
+        /// </summary>
+       
+		public void Main()
+		{
+            // TODO: Add your code here
+            baseDir = Dts.Variables["$Package::BaseDirectory"].Value.ToString();
+            chilkatDir = Dts.Variables["$Package::ChilkatDirectory"].Value.ToString();
+            
+            string host = "213.131.67.206";
+            int port = 22;
+            string userName = "fcmbftp01";
+            string password = "Banex@008";
+            var remoteFile = Dts.Variables["User::FileName"].Value + ".zip";
+            var localDestination = Path.Combine(baseDir, remoteFile);
+
+            //System.Threading.Tasks.Task t = System.Threading.Tasks.Task.Run(() =>
+            //{
+            //download from ftp
+            ChilkatDownload(host, port, userName, password, remoteFile, localDestination);
+
+            //});
+            //t.Wait();
+
+
+            Dts.TaskResult = (int)ScriptResults.Success;
+		}
+
+
+
+        static ScriptMain()
+        {
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
+
+        }
+
+        static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            if (args.Name.Contains("Chilkat"))
+            {
+                return System.Reflection.Assembly.LoadFile(System.IO.Path.Combine(chilkatDir, "ChilkatDotNet4.dll"));
+            }
+            return null;
+        }
+
+
+
+
+
+        public string ChilkatDownload(string host, int port, string ftpUsername, string ftpPassword, string remoteFilename, string localDestination)
+        {
+            //var sftp = new SFtp();
+            //string sFileName = "";
+            //string[] sFilePath = null;
+            //bool success = false;
+            //success = sftp.UnlockComponent("AJAYIOSSH_ORuz4wRq2Ryk");
+
+            //sftp.ConnectTimeoutMs = 5000;
+            //sftp.IdleTimeoutMs = 10000;
+
+            ////int port = 0;
+            ////string hostname = null;
+            ////hostname = "213.131.67.206";
+            ////port = 22;
+            //success = sftp.Connect(Host, Port);
+
+            //success = sftp.AuthenticatePw(FtpUsername, FtpPassword);
+
+            //success = sftp.InitializeSftp();
+
+            //string handle = null;
+            //handle = sftp.OpenFile(remoteFilename, "readOnly", "openExisting"); //"hamlet.xml"
+            //sFilePath = remoteFilename.Split('\\');
+            //sFileName = sFilePath[sFilePath.Length - 1];
+            ////success = sftp.DownloadFile(handle, localDestination);
+            ////success = sftp.DownloadFileByName("/To/" + sFileName, localDestination);
+            ////success = sftp.UploadFileByName("/To/" + sFileName, remoteFilename);
+            //var result = success.ToString();
+            //success = sftp.CloseHandle(handle);
+            //return result;
+
+
+
+            var sftp = new SFtp();
+            string sFileName = "";
+            string[] sFilePath = null;
+            bool success = false;
+            success = sftp.UnlockComponent("AJAYIOSSH_ORuz4wRq2Ryk");
+
+            sftp.ConnectTimeoutMs = 5000;
+            sftp.IdleTimeoutMs = 10000;
+
+            //int port = 0;
+
+            string hostname = null;
+            hostname = "213.131.67.206";
+            //port = 22;
+            success = sftp.Connect(host, port);
+
+            success = sftp.AuthenticatePw(ftpUsername, ftpPassword);
+
+            success = sftp.InitializeSftp();
+
+            string handle = null;
+            handle = sftp.OpenFile("hamlet.xml", "readOnly", "openExisting");
+            sFilePath = remoteFilename.Split('\\');
+            sFileName = sFilePath[sFilePath.Length - 1];
+            //success = sftp.DownloadFile(handle, "c:/temp/hamlet.xml"); //
+            //  success = sftp.UploadFileByName("/To/" + sFileName, LocalFilePath);
+            //success = sftp.DownloadFile("/To/" + sFileName, localDestination);
+            success = sftp.DownloadFileByName("/To/" + sFileName, localDestination);
+            success = sftp.CloseHandle(handle);
+            return true.ToString();
+
+
+        }
+
+
+        #region ScriptResults declaration
+        /// <summary>
+        /// This enum provides a convenient shorthand within the scope of this class for setting the
+        /// result of the script.
+        /// 
+        /// This code was generated automatically.
+        /// </summary>
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        };
+        #endregion
+
+	}
+}

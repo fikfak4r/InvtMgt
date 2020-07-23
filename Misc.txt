@@ -1,0 +1,1 @@
+Variables.VarFileNameCLD = String.Concat(Variables.MASTERCARDLIMITDETAILS, "_", dateTime.Year, String.Format("{0:00}", dateTime.Month), String.Format("{0:00}", dateTime.Day), String.Format("{0:00}", dateTime.Hour), String.Format("{0:00}", dateTime.Minute), ".dat");
